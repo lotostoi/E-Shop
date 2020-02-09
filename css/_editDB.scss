@@ -1,0 +1,281 @@
+.editDB {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &__contBut {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__inputBtn {
+        display: flex;
+        max-width: 250px;
+        min-height: 30px;
+        border-radius: 15px;
+        border: 2px solid #2754eb;
+        font-size: 11px;
+        font-family: $mr;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        background-color: #2754eb;
+        outline: none;
+        color: #fff;
+
+
+        &:hover {
+            background-color: #7490ec;
+            border: 2px solid #7490ec;
+        }
+
+        &:active {
+            background-color: #030c29;
+            border: 2px solid #030c29;
+        }
+    }
+
+    &__contSave {
+        pointer-events: none;
+        width: 100%;
+        max-width: 1378px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        bottom: 80px;
+        height: 0;
+        min-height: 40px;
+        position: fixed;
+        color: white;
+        // box-sizing: border-box;
+        z-index: 650;
+    }
+
+    &__SaveChange {
+        pointer-events: auto;
+        display: flex;
+        height: 0;
+        max-width: 270px;
+        min-height: 40px;
+        border-radius: 10px;
+        border: 1px solid #200111;
+        font-size: 11px;
+        font-family: $mr;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        background-color: #200111;
+        outline: none;
+        color: #fff;
+
+
+        &:hover {
+            background-color: #380734;
+            border: 1px solid #380734;
+        }
+
+        &:active {
+            background-color: #030c29;
+            border: 1px solid #030c29;
+        }
+    }
+
+    &__nuberProduct {
+       // width: 350px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        border: 1px solid gray;
+        border-radius: 10px;
+        background-color: rgba(128, 128, 128, 0.685);
+    }
+    &__nuberProduct > span {
+        margin-left: 20px;
+    }
+
+    &__numbInp {
+        pointer-events: auto;
+        margin: 5px 10px 5px 2.5%;
+        display: flex;
+        height: 0;
+        min-height: 20px;
+        width: 40px;
+        border-radius: 5px;
+        outline: none;
+        padding: 3px;
+    }
+    &__addProd {
+        pointer-events: auto;
+        display: flex;
+        height: 0;
+        max-width: 270px;
+        min-height: 40px;
+        border-radius: 10px;
+        border: 1px solid #200111;
+        font-size: 11px;
+        font-family: $mr;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        background-color: #200111;
+        outline: none;
+        color: #fff;
+
+
+        &:hover {
+            background-color: #380734;
+            border: 1px solid #380734;
+        }
+
+        &:active {
+            background-color: #030c29;
+            border: 1px solid #030c29;
+        }
+    }
+    &__inform {
+        border: 1px solid rgba(128, 128, 128, 0.507);
+        border-radius: 10px;
+        background-color: rgb(20, 177, 125);
+        display: flex;
+        margin: 40px auto;
+        padding: 10px;
+        justify-content: center;
+        
+    }
+
+}
+
+.contItem {
+    padding: 10px;
+    display: flex;
+    width: 80%;
+    margin: 5px auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 1px solid rgba(209, 206, 206, 0);
+    border-radius: 10px;
+    background-color: rgba(232, 199, 241, 0);
+
+
+
+    &__left {
+        padding: 10px;
+        display: flex;
+        width: 60%;
+        margin: 5px auto;
+        justify-content: center;
+        flex-wrap: wrap;
+        border: 1px solid rgb(209, 206, 206);
+        border-radius: 10px;
+        background-color: rgb(144, 255, 246);
+        flex-direction: column;
+        box-sizing: content-box;
+
+    }
+
+    &__right {
+        padding: 10px;
+        display: flex;
+        width: 35%;
+        margin: 5px auto;
+        justify-content: center;
+        flex-wrap: wrap;
+        border: 1px solid rgb(209, 206, 206);
+        border-radius: 10px;
+        background-color: rgb(252, 252, 252);
+    }
+
+    &__label {
+        margin: 5px 200px 5px 2.5%;
+    }
+
+    &__lebDell {
+        width: 50%;
+        display: flex;
+        margin: 5px;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    &__lebDell>div {
+        width: 150px;
+    }
+
+    &__a {
+        margin: 10px 200px 5px 2.5%;
+        display: flex;
+        text-decoration: none;
+        max-width: 250px;
+        min-height: 30px;
+        border-radius: 15px;
+        border: 2px solid #2754eb;
+        font-size: 11px;
+        font-family: $mr;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        background-color: #2754eb;
+        outline: none;
+        color: #fff;
+        // margin-left: auto;
+
+        &:hover {
+            background-color: #7490ec;
+            border: 2px solid #7490ec;
+        }
+
+        &:active {
+            background-color: #030c29;
+            border: 2px solid #030c29;
+        }
+
+    }
+
+    &__inp {
+        margin: 5px 200px 5px 2.5%;
+        display: flex;
+        height: 0;
+        min-height: 20px;
+        width: 200px;
+        border-radius: 5px;
+        outline: none;
+        padding: 3px;
+    }
+
+    &__inpDel {
+        margin: 5px 200px 5px 2.5%;
+        display: flex;
+        height: 0;
+        min-height: 20px;
+        width: 20px;
+        border-radius: 5px;
+        outline: none;
+        padding: 3px;
+    }
+
+    &__inpText {
+        margin: 0 auto;
+        display: flex;
+        height: 0;
+        min-height: 300px;
+        width: 95%;
+        border-radius: 10px;
+        outline: none;
+        overflow: auto;
+        padding: 5px;
+    }
+
+    &__img {
+        margin: auto;
+        height: 300px;
+    }
+}
