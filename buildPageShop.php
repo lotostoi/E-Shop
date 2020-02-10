@@ -1,5 +1,11 @@
 <?php
-
+/* if (!isset($_SESSION['id_user'])) {
+    $arr_users = getArr($link, USERS);
+    $max_id_user = $arr_users[count($arr_users)-1]['id'];
+    $_SESSION['id_user'] = $max_id_user + 1;
+    mysqli_query($link,$query->addOneRow_7(USERS, null, null, null, null, null, null, null));
+}
+ */
 $nametabel = "cotalog";
 
 if (!$link) die('Ошибка подключения к серверу баз данных.');

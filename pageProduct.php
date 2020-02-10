@@ -1,3 +1,19 @@
+<?php 
+//include "./../models/dbinit.php";
+//include "./../models/mod_makeOder.php";
+if (!isset($_SESSION['id_user'])) {
+    $arr_users = getArr($link, USERS);
+    $max_id_user = $arr_users[count($arr_users)-1]['id'];
+    $_SESSION['id_user'] = $max_id_user + 1;
+    $flag = true; 
+   // mysqli_query($link,$query->addOneRow_7(USERS, null, null, null, null, null, null, null));
+}
+
+
+
+?>
+
+
 <div class="contProduct">
     <img src="<?= $_GET['link'] ?>" alt='img' class='imgProduct'>
     <h3 class="nameProduct"> <?= $_GET['name'] ?> </h3>

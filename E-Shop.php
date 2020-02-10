@@ -7,9 +7,12 @@ if (isset($_POST['exit'])) {
     header("Location:E-Shop.php?page=entrance");
 }
 
-if (!$_SESSION['id_user']) {
-    mysqli_query($link, $query->deleteTable(NEW_USER));
+if (!isset($_SESSION['id_user'])) {
+    $arr_users = getArr($link, USERS);
+    $max_id_user = $arr_users[count($arr_users)-1]['id'];
+    $_SESSION['id_user'] = $max_id_user + 1;
 }
+
 if ($_SESSION['id_user'] != 'new_user') {
     $all =  all_sum_cart($link, $query, $_SESSION['id_user']);
 } else {
@@ -85,7 +88,7 @@ if ($_SESSION['id_user'] != 'new_user') {
             } elseif ($_GET['page'] == "reviews") {
                 require('feedBackForm.php');
             } elseif ($_GET['page'] == "cart") {
-                require('cart.php');
+                require('./vuews/cart.php');
             } elseif ($_GET['page'] == "editDB") {
                 require('editDB.php');
             } elseif ($_GET['page'] == "orderSend") {
@@ -115,6 +118,7 @@ if ($_SESSION['id_user'] != 'new_user') {
                 params.append('id_product', evt.target.dataset['id'])
                 params.append('id_user', "<?= $_SESSION['id_user'] ? $_SESSION['id_user'] : $_SESSION['id_user'] = 'new_user' ?>")
                 params.append('oper', 'add')
+                params.append('flag', "<?=$flag?>")
                 fetch('server.php', {
                         method: 'post',
                         body: params

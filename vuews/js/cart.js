@@ -31,6 +31,7 @@ document.querySelector('.contCartProducts__bodyCart').addEventListener('click', 
         paramss.append('id_product', evt.target.dataset['id'])
         paramss.append('id_user', "<?= $_SESSION['id_user'] ?>")
         paramss.append('oper', 'add')
+        params.append('flag', "<?=$flag?>")
         fetch('server.php', {
                 method: 'post',
                 body: paramss

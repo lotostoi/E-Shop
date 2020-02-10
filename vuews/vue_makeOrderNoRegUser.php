@@ -6,6 +6,7 @@
         <label class="makeOrder__login">E-mail: <input type="email" name="email_order" value="<?= $email_order ?>"></label>
         <label class="makeOrder__text">Пожелания к заказу: <textarea type="text" name="text_order"> <?= $text_order ?></textarea></label>
         <input type="submit" name="makeOrder" value="Сделать заказ" class="makeOrder__btn">
+        <input type="hidden" name="id_user" value="<?=$_SESSION['id_user']?>">
         <?php
         if ($_GET['status_order']) { ?>
             <div class='entrance__errText'>
