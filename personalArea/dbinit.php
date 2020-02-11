@@ -215,4 +215,3 @@ function all_sum_cart($link, $query, $id_user)
     }
     return ['sum' =>  $allSum, "quant" =>  $allQuant];
 }
-

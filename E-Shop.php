@@ -13,11 +13,9 @@ if (!isset($_SESSION['id_user'])) {
     $_SESSION['id_user'] = $max_id_user + 1;
 }
 
-if ($_SESSION['id_user'] != 'new_user') {
+if (isset($_SESSION['id_user'])) {
     $all =  all_sum_cart($link, $query, $_SESSION['id_user']);
-} else {
-    $all = all_sum_new_user($query);
-}
+} 
 
 ?>
 
@@ -61,7 +59,7 @@ if ($_SESSION['id_user'] != 'new_user') {
                 <?php
                 if ($_SESSION['user']) { ?>
                     <form class="contEntrense" method="POST">
-                        <a href="E-Shop.php?page=entrance" class="contEntrense__login"><?= $_SESSION['user'] ?></a>
+                        <a href="E-Shop.php?page=persArea" class="contEntrense__login"><?= $_SESSION['user'] ?></a>
                         <button type="submit" name="exit" class="contEntrense__action"> выход </button>
                     </form>
 
@@ -93,6 +91,8 @@ if ($_SESSION['id_user'] != 'new_user') {
                 require('editDB.php');
             } elseif ($_GET['page'] == "orderSend") {
                 require('./vuews/orderSend.php');
+            }elseif ($_GET['page'] == "persArea") {
+                require('./personalArea/contr_persArea.php');
             } else {
                 require('pageProduct.php');
             }
@@ -116,7 +116,7 @@ if ($_SESSION['id_user'] != 'new_user') {
             if (evt.target.className == "cotalog__addCart") {
                 let params = new FormData();
                 params.append('id_product', evt.target.dataset['id'])
-                params.append('id_user', "<?= $_SESSION['id_user'] ? $_SESSION['id_user'] : $_SESSION['id_user'] = 'new_user' ?>")
+                params.append('id_user', "<?= $_SESSION['id_user'] ?>")
                 params.append('oper', 'add')
                 params.append('flag', "<?=$flag?>")
                 fetch('server.php', {

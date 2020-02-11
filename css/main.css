@@ -1029,6 +1029,22 @@ img {
           justify-content: center;
 }
 
+.orderSend {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+  width: 40%;
+  font-size: 25px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 20px;
+  background-color: #f1e976;
+}
+
 html,
 body {
   margin: 0 1px 1px 1px;
