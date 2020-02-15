@@ -22,7 +22,6 @@ if (!isset($_SESSION['user'])  && isset($_POST['entrance']) && isset($_POST['log
         }
     };
 
-
     $login = $_POST['login'];
     echo $_POST['password'];
     $password = md5($_POST['password']);
@@ -45,6 +44,14 @@ if (!isset($_SESSION['user'])  && isset($_POST['entrance']) && isset($_POST['log
 }
 ?>
 <form class="entrance" method="POST">
+    <?php
+    if ($_GET['status_entrance']) { ?>
+        <div class='entrance__okText'>
+            <p class='entrance__err'> Личные данные успешно изменены, для продолжения работы введите логин и пароль. </p>
+        </div>
+    <?php
+    }
+    ?>
     <label class="entrance__login">Логин <input type="text" name="login" value="<?= $login ?>"></label>
     <label class="entrance__login">Пароль <input type="password" name="password" value="<?= $password ?>"></label>
     <?php echo  $text ?>

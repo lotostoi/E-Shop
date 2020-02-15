@@ -215,22 +215,4 @@ function all_sum_cart($link, $query, $id_user)
     }
     return ['sum' =>  $allSum, "quant" =>  $allQuant];
 }
-function all_sum_new_user($query)
-{
-    $conect = mysqli_connect(SERVNAME, USERNAME, PASSWORD, DBNAME);
 
-    $newArr =  getArr($conect, NEW_USER);
-    if ($newArr) {
-        foreach ($newArr as  $val) {
-            $res = mysqli_query($conect, $query->select_row_id($val['id'], NEW_USER));
-            $str = mysqli_fetch_assoc($res);
-            $quant = $str['quant_product'];
-            $id = $str['id_product'];
-            $res_pr = mysqli_fetch_assoc(mysqli_query($conect, $query->select_row_id($id, COTALOG)));
-            $price_cart = $res_pr['price'];
-            $allQuant += $quant;
-            $allSum += $quant * $price_cart;
-        }
-        return ['sum' =>  $allSum, "quant" =>  $allQuant];
-    }
-}

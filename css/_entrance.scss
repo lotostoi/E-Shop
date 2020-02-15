@@ -47,15 +47,21 @@
         background-color: rgb(236, 181, 181);
         justify-content: center;
     }
+
     &__okText {
         display: flex;
         width: 100%;
-        margin-top: 5px;
-        padding: 10px;
+        margin: 20px 0;
+        padding: 20px;
         border: 1px solid rgb(55, 247, 49);
         border-radius: 10px;
         background-color: rgb(43, 226, 156);
         justify-content: center;
+
+    }
+
+    &__okText>p {
+        text-align: center;
     }
 
 }

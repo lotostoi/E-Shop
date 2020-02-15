@@ -147,6 +147,18 @@ function getArr($link, $db)
     }
     return $arr;
 }
+function getArrSortData($link, $db, $field)
+{
+    $res = mysqli_query($link, $GLOBALS['query']->sort_max_min($db, $field));
+    if (!$res) {
+        return;
+    };
+    $i = 0;
+    while ($content = mysqli_fetch_assoc($res)) {
+        $arr[$i++] = $content;
+    }
+    return $arr;
+}
 function getArrPole($link, $db, $pole)
 {
     $res = mysqli_query($link, $GLOBALS['query']->selectAll($db));
@@ -169,9 +181,10 @@ function find_el_table($link, $table, $field, $currentVal)
             $flag = true;
             $index = $key;
             $id_el = $val['id'];
+            $row = $val;
         }
     };
-    return ['flag' => $flag, 'index' => $index, "id" => $id_el];
+    return ['flag' => $flag, 'index' => $index, "id" => $id_el, "el" => $row];
 }
 // ищет $currentVal в поле $field таблици $table и возвращет массив 
 // массив id строк, удовлетворяющих условию поиска
@@ -188,7 +201,7 @@ function getArrIdRows($link, $table, $field, $currentVal)
 }
 // ищет $currentVal в поле $field таблици $table и возвращет массив 
 // массив  строк, удовлетворяющих условию поиска
-function getArRows($link, $table, $field, $currentVal)
+function getArrRows($link, $table, $field, $currentVal)
 {
     $arr = getArr($link, $table);
     $i = 0;

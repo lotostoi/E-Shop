@@ -9,13 +9,13 @@ if (isset($_POST['exit'])) {
 
 if (!isset($_SESSION['id_user'])) {
     $arr_users = getArr($link, USERS);
-    $max_id_user = $arr_users[count($arr_users)-1]['id'];
+    $max_id_user = $arr_users[count($arr_users) - 1]['id'];
     $_SESSION['id_user'] = $max_id_user + 1;
 }
 
 if (isset($_SESSION['id_user'])) {
     $all =  all_sum_cart($link, $query, $_SESSION['id_user']);
-} 
+}
 
 ?>
 
@@ -88,10 +88,10 @@ if (isset($_SESSION['id_user'])) {
             } elseif ($_GET['page'] == "cart") {
                 require('./vuews/cart.php');
             } elseif ($_GET['page'] == "editDB") {
-                require('editDB.php');
+                require('./Adminka/contr_adminka.php');
             } elseif ($_GET['page'] == "orderSend") {
                 require('./vuews/orderSend.php');
-            }elseif ($_GET['page'] == "persArea") {
+            } elseif ($_GET['page'] == "persArea") {
                 require('./personalArea/contr_persArea.php');
             } else {
                 require('pageProduct.php');
@@ -118,7 +118,6 @@ if (isset($_SESSION['id_user'])) {
                 params.append('id_product', evt.target.dataset['id'])
                 params.append('id_user', "<?= $_SESSION['id_user'] ?>")
                 params.append('oper', 'add')
-                params.append('flag', "<?=$flag?>")
                 fetch('server.php', {
                         method: 'post',
                         body: params
@@ -130,6 +129,24 @@ if (isset($_SESSION['id_user'])) {
                         }
                     })
             }
+            // модальное окно с информацией о заказе
+             if (evt.target.dataset['id']) {
+
+                document.querySelector('.modelWindow').classList.toggle('modelWindow-active')
+                document.querySelector('.modelWindow__window').classList.toggle('modelWindow__window-active')
+                document.querySelector(`div[data-idwin="${evt.target.dataset['id']}"]`).classList.toggle('modelWindow__show-active')
+            }
+
+            if (evt.target.className == "modelWindow__close") {
+                document.querySelector('.modelWindow').classList.toggle('modelWindow-active')
+                document.querySelector('.modelWindow__window').classList.toggle('modelWindow__window-active')
+                let arr = [...document.querySelectorAll('.modelWindow__show')];
+                arr.forEach(el => {
+                    el.classList.remove('modelWindow__show-active');
+                }) 
+            }
+ 
+
         })
     </script>
 </body>

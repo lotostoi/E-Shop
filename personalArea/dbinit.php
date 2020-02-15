@@ -188,7 +188,7 @@ function getArrIdRows($link, $table, $field, $currentVal)
 }
 // ищет $currentVal в поле $field таблици $table и возвращет массив 
 // массив  строк, удовлетворяющих условию поиска
-function getArRows($link, $table, $field, $currentVal)
+function getArrRows($link, $table, $field, $currentVal)
 {
     $arr = getArr($link, $table);
     $i = 0;
