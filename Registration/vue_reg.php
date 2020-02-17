@@ -1,4 +1,4 @@
-<form class="entrance" method="POST" action="./controllers/contr_reg.php">
+<form class="entrance" method="POST" action="./Registration/contr_reg.php">
     <label class="entrance__login">Логин: <input type="text" name="login_reg" value="<?= $login_reg ?>"></label>
     <label class="entrance__login">Ваше имя: <input type="text" name="name_reg" value="<?= $name_reg ?>"></label>
     <label class="entrance__login">Пароль: <input type="password" name="password_reg_1" value="<?= $pas_reg_1 ?>"></label>

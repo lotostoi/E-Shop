@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-include "dbinit.php";
+include "./models/dbinit.php";
 if (isset($_POST['exit'])) {
     session_destroy();
     header("Location:E-Shop.php?page=entrance");
@@ -35,14 +35,14 @@ if (isset($_SESSION['id_user'])) {
         <header class="header">
             <h1 class="header__h1"><a href="E-Shop.php?page=main" class="header__a">E-SHOP </a></h1>
             <ul class="header__ul">
-                <li class="header__li"><a href="E-Shop.php?page=main" class="header__a">Home</a></li>
-                <li class="header__li"><a href="#" class="header__a">About Us</a></li>
-                <li class="header__li"><a href="#" class="header__a">Products</a></li>
-                <li class="header__li"><a href="E-Shop.php?page=reviews" class="header__a">Reviews</a></li>
+                <li class="header__li"><a href="E-Shop.php?page=main" class="header__a">Главная</a></li>
+                <!--   <li class="header__li"><a href="#" class="header__a">About Us</a></li> -->
+                <li class="header__li"><a href="E-Shop.php?page=products" class="header__a">Товары</a></li>
+                <li class="header__li"><a href="E-Shop.php?page=reviews" class="header__a">Отзывы</a></li>
                 <?php
                 if ($_SESSION['status_user'] == 'Admin') {
                 ?>
-                    <li class="header__li"><a href="E-Shop.php?page=editDB" class="header__a">Edit DB</a></li>
+                    <li class="header__li"><a href="E-Shop.php?page=editDB" class="header__a">Админка</a></li>
                 <?php
                 }
 
@@ -77,24 +77,26 @@ if (isset($_SESSION['id_user'])) {
         <section class="cotalog">
 
             <?php
-            if ($_GET['page'] == "main" || !$_GET['page']) {
-                require('buildPageShop.php');
+            if ($_GET['page'] == "products" || !$_GET['page']) {
+                require('./vuews/buildPageShop.php');
             } elseif ($_GET['page'] == "entrance") {
-                require('entrance.php');
+                require('./personalArea/entrance.php');
+            } elseif ($_GET['page'] == "main") {
+                require('./vuews/main.php');
             } elseif ($_GET['page'] == "reg") {
-                require('./vuews/vue_reg.php');
+                require('./Registration/vue_reg.php');
             } elseif ($_GET['page'] == "reviews") {
-                require('feedBackForm.php');
+                require('./Reviews/feedBackForm.php');
             } elseif ($_GET['page'] == "cart") {
-                require('./vuews/cart.php');
+                require('./Cart/cart.php');
             } elseif ($_GET['page'] == "editDB") {
                 require('./Adminka/contr_adminka.php');
             } elseif ($_GET['page'] == "orderSend") {
-                require('./vuews/orderSend.php');
+                require('./makeOrder/orderSend.php');
             } elseif ($_GET['page'] == "persArea") {
                 require('./personalArea/contr_persArea.php');
             } else {
-                require('pageProduct.php');
+                require('./vuews/pageProduct.php');
             }
             ?>
         </section>
@@ -118,7 +120,7 @@ if (isset($_SESSION['id_user'])) {
                 params.append('id_product', evt.target.dataset['id'])
                 params.append('id_user', "<?= $_SESSION['id_user'] ?>")
                 params.append('oper', 'add')
-                fetch('server.php', {
+                fetch('./Cart/server.php', {
                         method: 'post',
                         body: params
                     })
@@ -130,7 +132,7 @@ if (isset($_SESSION['id_user'])) {
                     })
             }
             // модальное окно с информацией о заказе
-             if (evt.target.dataset['id']) {
+            if (evt.target.className == 'watchOrder') {
 
                 document.querySelector('.modelWindow').classList.toggle('modelWindow-active')
                 document.querySelector('.modelWindow__window').classList.toggle('modelWindow__window-active')
@@ -143,9 +145,8 @@ if (isset($_SESSION['id_user'])) {
                 let arr = [...document.querySelectorAll('.modelWindow__show')];
                 arr.forEach(el => {
                     el.classList.remove('modelWindow__show-active');
-                }) 
+                })
             }
- 
 
         })
     </script>

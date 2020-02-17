@@ -147,6 +147,18 @@ function getArr($link, $db)
     }
     return $arr;
 }
+function getArrSortData($link, $db, $field)
+{
+    $res = mysqli_query($link, $GLOBALS['query']->sort_max_min($db, $field));
+    if (!$res) {
+        return;
+    };
+    $i = 0;
+    while ($content = mysqli_fetch_assoc($res)) {
+        $arr[$i++] = $content;
+    }
+    return $arr;
+}
 function getArrPole($link, $db, $pole)
 {
     $res = mysqli_query($link, $GLOBALS['query']->selectAll($db));
@@ -169,13 +181,14 @@ function find_el_table($link, $table, $field, $currentVal)
             $flag = true;
             $index = $key;
             $id_el = $val['id'];
+            $row = $val;
         }
     };
-    return ['flag' => $flag, 'index' => $index, "id" => $id_el];
+    return ['flag' => $flag, 'index' => $index, "id" => $id_el, "el" => $row];
 }
 // ищет $currentVal в поле $field таблици $table и возвращет массив 
-// массив id удовлетворяющих условию поиска
-function getArrfields($link, $table, $field, $currentVal)
+// массив id строк, удовлетворяющих условию поиска
+function getArrIdRows($link, $table, $field, $currentVal)
 {
     $arr = getArr($link, $table);
     $i = 0;
@@ -187,7 +200,7 @@ function getArrfields($link, $table, $field, $currentVal)
     return $newArr;
 }
 // ищет $currentVal в поле $field таблици $table и возвращет массив 
-// массив строк удовлетворяющих условию поиска
+// массив  строк, удовлетворяющих условию поиска
 function getArrRows($link, $table, $field, $currentVal)
 {
     $arr = getArr($link, $table);
@@ -202,7 +215,7 @@ function getArrRows($link, $table, $field, $currentVal)
 // вычисляет общую сумму корзины и количество товаров
 function all_sum_cart($link, $query, $id_user)
 {
-    $newArr =  getArrfields($link, CART, 'id_user', $id_user);
+    $newArr =  getArrIdRows($link, CART, 'id_user', $id_user);
     foreach ($newArr as $key => $val) {
         $res = mysqli_query($link, $query->select_row_id($val, CART));
         $str = mysqli_fetch_assoc($res);
@@ -214,5 +227,10 @@ function all_sum_cart($link, $query, $id_user)
         $allSum += $quant * $price_cart;
     }
     return ['sum' =>  $allSum, "quant" =>  $allQuant];
+}
+
+function getJsonTable_newUser($link) {
+ $arrTabel = getArr($link,NEW_USER); 
+ return json_encode($arrTabel);
 }
 

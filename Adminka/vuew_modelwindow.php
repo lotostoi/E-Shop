@@ -21,11 +21,14 @@ print_r($strOrder); */
             $inf_order = $val['informOrder'];
             $allSum = $val['allSum'];
             $allQuant = $val['allQuant'];
+            // echo $inf_order;
 
         ?>
 
             <div data-idwin="<?= $id_order ?>" class="modelWindow__show">
                 <?php
+                $arrIdProduct = [];
+                $arrQuantProduct = [];
                 // получаем массив c id-ками продуктов
                 preg_match_all('/\"id\_product\"\:\"[0-9]+\"/i', $inf_order, $arrIdProduct, PREG_PATTERN_ORDER);
                 $str_id = implode('', $arrIdProduct[0]);
@@ -36,10 +39,10 @@ print_r($strOrder); */
                 preg_match_all('/[0-9]+/i', $str_quant, $arr_quant, PREG_PATTERN_ORDER);
                 // формируем общий массив
                 foreach ($arr_id[0] as $key => $val) {
+                    echo $val;
                     $orderArr[$key] = ['id_product' => $val, 'quant' => $arr_quant[0][$key]];
                 }
-                //print_r( $orderArr);
-
+                
                 ?>
 
                 <button class="modelWindow__close">X</button>
@@ -87,7 +90,10 @@ print_r($strOrder); */
                         <span class="modelWindow__quantProduct"><?= $id_quant ?> шт.</span>
                         <span class="modelWindow__priceProduct"> $ <?= $id_quant * $product['price'] ?> </span>
                     </div>
-                <?php } ?>
+                <?php
+                }
+                $orderArr = [];
+                ?>
 
                 <div class="modelWindow__orderCont">
                     <span class="modelWindow__nameProduct"> Итого: </span>

@@ -229,6 +229,24 @@ $colActive: rgb(12, 245, 70);
     }
 }
 
+.contMain {
+    display: flex;
+    flex-direction: column;
+
+    &>h1 {
+        margin: 20px auto;
+        font-size: 25px;
+    }
+
+    &>p {
+        width: 80%;
+        margin: 20px auto;
+        font-size: 18px;
+        text-align: justify;
+        line-height: 25px;
+    }
+}
+
 .contProduct {
     width: 80%;
     display: flex;

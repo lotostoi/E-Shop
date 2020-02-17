@@ -18,7 +18,7 @@ if ($textUser != ""  &&  $nameUser != ""  &&  $nameDB != "") {
     $link = mysqli_connect($nameServer, $nameUserDB, "", $nameDB);
     if (!$link) die('Ошибка подключения к серверу баз данных.');
 
-    $res = mysqli_query($link, $query->addOneRow($nameTable, null, $nameUser, $dateUser, $emailUser, $phoneUser, $textUser));
+    $res = mysqli_query($link, $query->addOneRow_6($nameTable, null, $nameUser, $dateUser, $emailUser, $phoneUser, $textUser));
 
     if (!$res) die('Ошибка: ' . mysqli_error($link));
     mysqli_close($link);
@@ -52,7 +52,7 @@ mysqli_close($link);
 
 ?>
 
-<form action="#" method="POST" class="writeReview">
+<form  method="POST" class="writeReview">
     <h1 class="writeReview__h1"> Пожалуйста оставте отзыв о нашем сайте! </h1>
     <label for="#" class="writeReview__user"> Ваше имя:
         <input type="text" name="nameUser" class="writeReview__nameUser">
@@ -67,7 +67,6 @@ mysqli_close($link);
         <textarea name="textUser" class="writeReview__textUser" cols="30" rows="10"></textarea>
     </label>
     <input type="submit" name="sendReview" value="Отправить отзыв" class="writeReview__sendData">
-
 </form>
 
 <section class="reviews">

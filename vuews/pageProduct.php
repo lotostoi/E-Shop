@@ -27,7 +27,7 @@ if (!isset($_SESSION['id_user'])) {
         params.append('id_product', <?= $_GET['page'] ?>)
         params.append('id_user', "<?= $_SESSION['id_user'] ? $_SESSION['id_user'] : $_SESSION['id_user'] = 'new_user' ?>")
         params.append('oper', 'add')
-        fetch('server.php', {
+        fetch('./Cart/server.php', {
                 method: 'post',
                 body: params
             })

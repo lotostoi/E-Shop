@@ -23,7 +23,7 @@ if (!isset($_SESSION['user'])  && isset($_POST['entrance']) && isset($_POST['log
     };
 
     $login = $_POST['login'];
-    echo $_POST['password'];
+   // echo $_POST['password'];
     $password = md5($_POST['password']);
 
     if ($flag) {

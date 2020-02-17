@@ -1,5 +1,5 @@
 <?php
-include "dbinit.php";
+include "./../models/dbinit.php";
 error_reporting(0);
 
 if ($_POST['oper'] == "alldel") {

@@ -4,7 +4,7 @@ document.querySelector('.contCartProducts__bodyCart').addEventListener('click', 
         paramss.append('id_product', evt.target.dataset['id'])
         paramss.append('id_user', evt.target.dataset['userid'])
         paramss.append('oper', '-')
-        fetch('./server.php', {
+        fetch('./Cart/server.php', {
                 method: 'post',
                 body: paramss
             })
@@ -31,7 +31,7 @@ document.querySelector('.contCartProducts__bodyCart').addEventListener('click', 
         paramss.append('id_product', evt.target.dataset['id'])
         paramss.append('id_user', evt.target.dataset['userid'])
         paramss.append('oper', 'add')
-        fetch('./server.php', {
+        fetch('./Cart/server.php', {
                 method: 'post',
                 body: paramss
             })
@@ -52,10 +52,9 @@ document.querySelector('.contCartProducts__bodyCart').addEventListener('click', 
     }
     if (evt.target.className == 'contCartProducts__allClean') {
         let paramss = new FormData();
-       // paramss.append('id_product', evt.target.dataset['id'])
         paramss.append('id_user', evt.target.dataset['userid'])
         paramss.append('oper', 'alldel')
-        fetch('./server.php', {
+        fetch('./Cart/server.php', {
                 method: 'post',
                 body: paramss
             })

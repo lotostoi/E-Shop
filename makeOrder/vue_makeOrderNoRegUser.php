@@ -1,6 +1,6 @@
 <div class='order'>
-    <!--  <h3 class='order__h3'>Для оформления заказа необходимо авторизирвароться! </h3> -->
-    <form class="makeOrder" method="POST" action="./controllers/contr_makeOrderNoRegUser.php">
+ 
+    <form class="makeOrder" method="POST" action="./makeOrder/contr_makeOrderNoRegUser.php">
         <label class="makeOrder__login">Ваше имя: <input type="text" name="name_order" value="<?= $name_order ?>"></label>
         <label class="makeOrder__login">Телефон: <input type="text" name="phone_order" value="<?= $phone_order ?>"></label>
         <label class="makeOrder__login">E-mail: <input type="email" name="email_order" value="<?= $email_order ?>"></label>

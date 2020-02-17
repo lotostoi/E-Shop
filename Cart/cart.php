@@ -1,7 +1,7 @@
 <div class="contCartProducts__bodyCart">
     <?php
 
-    // echo $_SESSION['id_user'];
+
 
     $find_id = find_el_table($link, USERS, 'id', $_SESSION['id_user']);
 
@@ -42,13 +42,13 @@
     </div>
     <?php
     if ($find_id['flag']) {
-        include "./vuews/vue_makeOrderYesRegUser.php";
+        include "./makeOrder/vue_makeOrderYesRegUser.php";
     } else {
-        include "./vuews/vue_makeOrderNoRegUser.php";
+        include "./makeOrder/vue_makeOrderNoRegUser.php";
     } ?>
 
 </div>
 
-<script src="./vuews/js/cart.js">
+<script src="./Cart/js/cart.js">
 
 </script>

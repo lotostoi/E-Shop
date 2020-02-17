@@ -1,6 +1,6 @@
 <?php
 include "./../models/dbinit.php";
-include "./../models/mod_makeOder.php";
+
 
 $cart_user = getArrRows($link, CART, 'id_user', $_POST['id_user']);
 $user = getArrRows($link, USERS, 'id', $_POST['id_user'])[0];
