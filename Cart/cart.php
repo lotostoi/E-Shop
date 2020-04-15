@@ -3,9 +3,9 @@
 
 
 
-    $find_id = find_el_table($link, USERS, 'id', $_SESSION['id_user']);
+    $find_id = $db->find_el_table(USERS, 'id', $_SESSION['id_user']);
 
-    $newArr =  getArrIdRows($link, CART, 'id_user', $_SESSION['id_user']);
+    $newArr =  $db->getArrIdRows(CART, 'id_user', $_SESSION['id_user']);
     foreach ($newArr as $key => $val) {
         $res = mysqli_query($link, $query->select_row_id($val, CART));
         $str = mysqli_fetch_assoc($res);
