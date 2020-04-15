@@ -14,7 +14,7 @@ if (isset($_COOKIE['login'])) {
 if (!isset($_SESSION['user'])  && isset($_POST['entrance']) && isset($_POST['login']) && isset($_POST['password'])) {
     // провека есть ли логин в базе данных и под каким он номером
 
-    $arr = getArrPole($link, USERS, 'login');
+    $arr = $db->getArrPole(USERS, 'login');
     foreach ($arr as $key => $val) {
         if ($val == $_POST['login']) {
             $flag = true;
@@ -23,17 +23,17 @@ if (!isset($_SESSION['user'])  && isset($_POST['entrance']) && isset($_POST['log
     };
 
     $login = $_POST['login'];
-   // echo $_POST['password'];
+    // echo $_POST['password'];
     $password = md5($_POST['password']);
 
     if ($flag) {
-        $pas = getArr($link, USERS)[$index]['password'];
+        $pas = $db->getArr(USERS)[$index]['password'];
         if ($pas ==  $password) {
             setcookie("login", $_POST['login'], time() + 3600 * 24 * 365);
             setcookie("password", $password, time() + 3600 * 24 * 365);
             $_SESSION['user'] = $_POST['login'];
-            $_SESSION['id_user'] = getArr($link, USERS)[$index]['id'];
-            $_SESSION['status_user'] = getArr($link, USERS)[$index]['status'];
+            $_SESSION['id_user'] = $db->getArr(USERS)[$index]['id'];
+            $_SESSION['status_user'] = $db->getArr(USERS)[$index]['status'];
             header("Location:E-Shop.php?page=main");
         } else {
             $text .= " <div class='entrance__errText'> <p class='entrance__err'> Неверный логин или пароль! </p> </div>";

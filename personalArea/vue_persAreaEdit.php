@@ -1,6 +1,6 @@
 <?php
 if ($_POST['name_persArea'] == '' && $_POST['login_persArea'] == '') {
-    $user = getArrRows($link, USERS, 'id', $_SESSION['id_user'])[0];
+    $user = $db->getArrRows(USERS, 'id', $_SESSION['id_user'])[0];
     $login_pers = $user['login'];
     $name_pers = $user['name'];
     $pas1_pers = '';

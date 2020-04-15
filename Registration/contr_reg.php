@@ -1,5 +1,5 @@
 <?php
-include "./../models/dbinit.php";
+include "./../models/init.php";
 $login_reg = $_POST['login_reg'];
 $name_reg = $_POST['name_reg'];
 $pas_reg_1 = $_POST['password_reg_1'];
