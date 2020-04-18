@@ -1,5 +1,5 @@
 <?php
-class QueryToMysqli
+trait QueryToMysqli
 {
     function incPole($id, $db, $pole)
     {

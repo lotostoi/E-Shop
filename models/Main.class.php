@@ -2,8 +2,12 @@
 
 include "Mysql.class.php";
 
+
 class DB
-{
+
+{   // добавляем запросы к БД;
+    use QueryToMysqli;
+
     //db fields
     private $servName;
     private $userName;
@@ -12,10 +16,37 @@ class DB
     public $query;
     //  connect to DB
     public $link;
-    // adding queryes' class for DB
-    function __construct()
+
+
+    private static $instance;  // Экземпляр объекта
+    // Защищаем от создания через new Singleton
+    private function __construct()
+    { /* ... @return Singleton */
+    }
+    // Защищаем от создания через клонирование
+    private function __clone()
+    { /* ... @return Singleton */
+    }
+    // Защищаем от создания через unserialize
+    private function __wakeup()
+    { /* ... @return Singleton */
+    }
+    // Возвращает единственный экземпляр класса. @return Singleton
+    public static function getInstance()
     {
-        $this->query = new QueryToMysqli;
+        if (empty(self::$instance)) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    public function setOptionsDB($servName, $userName, $password, $dbName)
+    {
+        $this->servName = $servName;
+        $this->userName = $userName;
+        $this->password = $password;
+        $this->dbName = $dbName;
+        $this->connectDB();
     }
 
     private function connectDB()
@@ -35,16 +66,11 @@ class DB
         //  return;
     }
 
-    public function setOptionsDB($servName, $userName, $password, $dbName)
-    {
-        $this->servName = $servName;
-        $this->userName = $userName;
-        $this->password = $password;
-        $this->dbName = $dbName;
-        $this->connectDB();
-    }
 
-    // The methods for working with database
+
+    // *******************The methods for working with database************//
+    // *******************The methods for working with database************//
+    // *******************The methods for working with database************//
 
     public  function getArr($nameTable)
     {
@@ -58,7 +84,7 @@ class DB
 
     public function getArrSortData($nameTable, $field)
     {
-        $res = mysqli_query($this->link, $this->query->sort_max_min($nameTable, $field)) ?: $this->printError();
+        $res = mysqli_query($this->link, $this->sort_max_min($nameTable, $field)) ?: $this->printError();
         $i = 0;
         while ($content = mysqli_fetch_assoc($res)) {
             $arr[$i++] = $content;
@@ -68,7 +94,7 @@ class DB
 
     public function getArrPole($nameTable, $pole)
     {
-        $res = mysqli_query($this->link,  $this->query->selectAll($nameTable)) ?: $this->printError();
+        $res = mysqli_query($this->link,  $this->selectAll($nameTable)) ?: $this->printError();
         $i = 0;
         while ($content = mysqli_fetch_assoc($res)) {
             $arr[$i++] = $content["$pole"];
@@ -127,11 +153,11 @@ class DB
     {
         $newArr = $this->getArrIdRows($nameCartTable, 'id_user', $id_user);
         foreach ($newArr as $key => $val) {
-            $res = mysqli_query($this->link, $this->query->select_row_id($val, CART));
+            $res = mysqli_query($this->link, $this->select_row_id($val, CART));
             $str = mysqli_fetch_assoc($res);
             $quant = $str['quantity'];
             $id = $str['id_product'];
-            $res_pr = mysqli_fetch_assoc(mysqli_query($this->link,  $this->query->select_row_id($id, COTALOG)));
+            $res_pr = mysqli_fetch_assoc(mysqli_query($this->link,  $this->select_row_id($id, COTALOG)));
             $price_cart = $res_pr['price'];
             $allQuant += $quant;
             $allSum += $quant * $price_cart;
