@@ -1,20 +1,20 @@
 <?php
 session_start();
 error_reporting(0);
-include "./models/dbinit.php";
+include "./models/init.php";
 if (isset($_POST['exit'])) {
     session_destroy();
     header("Location:E-Shop.php?page=entrance");
 }
 
 if (!isset($_SESSION['id_user'])) {
-    $arr_users = getArr($link, USERS);
+    $arr_users = $db->getArr(USERS);
     $max_id_user = $arr_users[count($arr_users) - 1]['id'];
     $_SESSION['id_user'] = $max_id_user + 1;
 }
 
 if (isset($_SESSION['id_user'])) {
-    $all =  all_sum_cart($link, $query, $_SESSION['id_user']);
+    $all = $db->all_sum_cart(CART, $_SESSION['id_user']);
 }
 
 ?>

@@ -1,7 +1,7 @@
 <?php 
 
 if (!isset($_SESSION['id_user'])) {
-    $arr_users = getArr($link, USERS);
+    $arr_users = $db->getArr(USERS);
     $max_id_user = $arr_users[count($arr_users)-1]['id'];
     $_SESSION['id_user'] = $max_id_user + 1;
     $flag = true; 

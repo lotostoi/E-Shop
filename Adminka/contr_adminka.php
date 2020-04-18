@@ -57,7 +57,7 @@
         // если нажата кнопка редктировать коталог
         if (isset($_POST['getCotalog'])) {
 
-            $arr = getArr($link, COTALOG);
+            $arr = $db->getArr(COTALOG);
 
             foreach ($arr as $key => $val) {
                 $id_cot = $val['id'];
@@ -110,7 +110,7 @@
         <?php
         }
         if (isset($_POST['lookOrders'])) {
-            $orders =  getArrSortData($link, ORDERS, "date");
+            $orders = $db-> getArrSortData( ORDERS, "date");
             include "vuew_showorders.php";
         }
         ?>
@@ -118,7 +118,6 @@
 </div>
 <script>
     document.querySelector('.editDB__form').addEventListener('click', (evt) => {
-
         if (evt.target.className == "contItem__a") {
             let link = document.querySelector(`input[data-link="${evt.target.dataset['id']}"]`).value;
 
@@ -126,6 +125,5 @@
                                         <img src='${link}' alt='img' class='contItem__img'  height = '300'>
                                         `
         }
-
     })
 </script>

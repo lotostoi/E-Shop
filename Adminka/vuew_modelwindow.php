@@ -1,15 +1,12 @@
 <?php
-include "./../dbinit.php";
-$strOrder = find_el_table($link, ORDERS, 'id', 16)['el'];
-/* echo "test";
-print_r($strOrder); */
+include "./../init.php";
 ?>
 
 <div class="modelWindow">
     <div class="modelWindow__window">
         <?php
 
-        $orders = getArr($link, ORDERS);
+        $orders = $db->getArr(ORDERS);
 
         foreach ($orders as $key => $val) {
             $id_order = $val['id'];
@@ -39,10 +36,10 @@ print_r($strOrder); */
                 preg_match_all('/[0-9]+/i', $str_quant, $arr_quant, PREG_PATTERN_ORDER);
                 // формируем общий массив
                 foreach ($arr_id[0] as $key => $val) {
-                    echo $val;
+                 //   echo $val;
                     $orderArr[$key] = ['id_product' => $val, 'quant' => $arr_quant[0][$key]];
                 }
-                
+
                 ?>
 
                 <button class="modelWindow__close">X</button>
@@ -81,8 +78,8 @@ print_r($strOrder); */
 
                     $id_product = $val['id_product'];
                     $id_quant = $val['quant'];
-                    $product = getArrRows($link, COTALOG, 'id', $id_product)[0];
-                    //  print_r($product);
+                    $product = $db->getArrRows(COTALOG, 'id', $id_product)[0];
+
                 ?>
                     <div class="modelWindow__orderCont">
                         <img src="<?= $product['linkImg'] ?>" alt="" class="modelWindow__imgProduct">

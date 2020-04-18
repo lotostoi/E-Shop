@@ -1,22 +1,23 @@
 <?php
 $nametabel = "cotalog";
-if (!$link) die('Ошибка подключения к серверу баз данных.');
-$list = "";
-$products = mysqli_query($link, $query->selectAll($nametabel));
-while ($product = mysqli_fetch_assoc($products)) {
-    $id = $product['id'];
-    $name = $product['name'];
-    $path = $product['linkImg'];
-    $price = $product['price'];
-    $text = $product['description'];
-    $list .=  "<div class='cotalog__product'>";
-    $list .= "<a href='E-Shop.php?page=$id&name=$name&link=$path&price=$price&text=$text' data-id='$id' class='cotalog__nameProduct'> 
-                <img src='$path' alt='img' class='cotalog__img' width='100' height ='190'>    
-            </a>";
-    $list .= "<a href='E-Shop.php?page=$id&name=$name&link=$path&price=$price&text=$text' data-id='$id' class='cotalog__nameProduct'> $name </a>";
-    $list .= "<span class='cotalog__priceProduct'>$ $price</span>";
-    $list .= "<button data-id='$id' class='cotalog__addCart'>Добавить в корзину</button>";
-    $list .= "</div>";
-}
-echo $list;
+$products = $db->getArr($nametabel);
 ?>
+<?php
+foreach ($products as $key => $value) {
+?>
+    <div class='cotalog__product'>
+        <a href='E-Shop.php?page=<?= $value['id'] ?>&name=<?= $value['name']?>&link=<?= $value['linkImg'] ?>&price=<?= $value['price'] ?>&text=<?= $value['description'] ?>' data-id='<?= $value['id'] ?>' class='cotalog__nameProduct'>
+            <img src='<?= $value['linkImg'] ?>' alt='<?= $value['name'] ?>' class='cotalog__img' width='100' height='190'>
+        </a>
+        <a href='E-Shop.php?page=<?= $value['id'] ?>&name=<?= $value['name'] ?>&link=<?= $value['linkImg'] ?>&price=<?= $value['price'] ?>&text=<?= $value['description'] ?>' data-id='<?= $value['id'] ?>' class='cotalog__nameProduct'> <?= $value['name'] ?> </a>
+        <span class='cotalog__priceProduct'>$ <?= $value['price'] ?></span>
+        <button data-id='<?= $value['id'] ?>' class='cotalog__addCart'>Добавить в корзину</button>
+
+    </div>
+<?php } ?>
+
+
+
+
+
+
